@@ -4,41 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Home">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtNombre"
+        <Button
+            android:id="@+id/btnNuevo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Kevin Mendez" />
-
-        <EditText
-            android:id="@+id/edtClave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:text="secret" />
+            android:text="Nuevo" />
 
         <Button
-            android:id="@+id/btnGuardar"
+            android:id="@+id/btnBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:text="Aceptar" />
+            android:text="Buscar" />
 
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar" />
+
+        <Button
+            android:id="@+id/btnSalir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salir" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar" />
+
+        <Button
+            android:id="@+id/btnListado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listado" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
