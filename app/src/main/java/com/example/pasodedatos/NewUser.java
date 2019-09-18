@@ -16,6 +16,7 @@ public class NewUser extends AppCompatActivity {
     Button btnGuardar, btnCancelar;
     EditText edtNombre, edtCorreo, edtPass, edtConfirPass;
     RadioButton rdbUsuario, rdbAdmin, rdbAsistente;
+    Usuarios usuarios;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +52,6 @@ public class NewUser extends AppCompatActivity {
                     edtCorreo.requestFocus();
                 } else if (pass.equals(confiPass)) {
 
-                    Toast.makeText(getApplicationContext(), "Funciona", Toast.LENGTH_LONG).show();
-
                     Intent objViewInfoUser = new Intent(getApplicationContext(), ViewNewUser.class);
                     objViewInfoUser.putExtra("btnCancelar", "Cancelar");
                     objViewInfoUser.putExtra("btnConfirmar", "Confirmar");
@@ -60,7 +59,15 @@ public class NewUser extends AppCompatActivity {
                     objViewInfoUser.putExtra("correo", correo);
                     objViewInfoUser.putExtra("pass", pass);
                     objViewInfoUser.putExtra("tipoUsuario", tipoUsuario);
+
+                    usuarios.saveMailUser(correo);
+                    usuarios.saveNameUser(nombre);
+                    usuarios.savePassUser(pass);
+                    usuarios.saveTypeUser(tipoUsuario);
+
                     startActivityForResult(objViewInfoUser, 2);
+
+
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Tu contraseña no coincide", Toast.LENGTH_LONG).show();
