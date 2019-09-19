@@ -37,5 +37,9 @@ public final class Usuarios {
         return claves.get(correos.indexOf(correo)).toString().trim();
     }
 
+    public  static String getTipos(String correo){
+        return tipos.get(correos.indexOf(correo)).toString().trim();
+    }
+
 
 }
