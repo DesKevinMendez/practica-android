@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class Home extends AppCompatActivity {
 
-    Button btnNuevo, btnBuscar, btnEditar, btnEliminar, btnSalir;
+    Button btnNuevo, btnBuscar, btnEditar, btnEliminar, btnSalir, btnListado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class Home extends AppCompatActivity {
         btnEditar = findViewById(R.id.btnEditar);
         btnEliminar = findViewById(R.id.btnEliminar);
         btnSalir = findViewById(R.id.btnSalir);
+        btnListado = findViewById(R.id.btnListado);
 
         btnNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +65,14 @@ public class Home extends AppCompatActivity {
                 startActivity(objSalir);
                 finish();
 
+            }
+        });
+
+        btnListado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent listVIewUser = new Intent(getApplicationContext(), ListViewUser.class);
+                startActivity(listVIewUser);
             }
         });
     }

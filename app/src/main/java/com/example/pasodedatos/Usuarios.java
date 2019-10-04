@@ -41,5 +41,12 @@ public final class Usuarios {
         return tipos.get(correos.indexOf(correo)).toString().trim();
     }
 
+    public  static String getUsuario(int position){
+        return nombres.get(position).toString().trim();
+    }
+
+    public static String getEmailUser(int position) {
+        return correos.get(position).toString().trim();
+    }
 
 }

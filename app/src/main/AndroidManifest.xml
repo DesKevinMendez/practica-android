@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FindDeleteOrUpdate"></activity>
+        <activity android:name=".ListViewUser"></activity>
+        <activity android:name=".FindDeleteOrUpdate" />
         <activity android:name=".ViewNewUser" />
         <activity android:name=".NewUser" />
         <activity android:name=".Home" />
