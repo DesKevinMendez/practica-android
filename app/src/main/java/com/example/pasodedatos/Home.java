@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pasodedatos.StaticDataClass.NavegationEditDelete;
+
 public class Home extends AppCompatActivity {
 
     Button btnNuevo, btnBuscar, btnEditar, btnEliminar, btnSalir, btnListado;
+    NavegationEditDelete navegationEditDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +28,7 @@ public class Home extends AppCompatActivity {
         btnNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent objNewUser = new Intent(getApplicationContext(), NewUser.class);
+                Intent objNewUser = new Intent(getApplicationContext(), NewEditUser.class);
                 startActivity(objNewUser);
 
             }
@@ -45,6 +48,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent objFindUpdateOrDelete = new Intent(getApplicationContext(), FindDeleteOrUpdate.class);
                 startActivity(objFindUpdateOrDelete);
+                navegationEditDelete.setActions("Editar");
 
             }
         });
@@ -54,6 +58,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent objFindUpdateOrDelete = new Intent(getApplicationContext(), FindDeleteOrUpdate.class);
                 startActivity(objFindUpdateOrDelete);
+                navegationEditDelete.setActions("Eliminar");
 
             }
         });

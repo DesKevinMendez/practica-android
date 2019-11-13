@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewUser">
+    tools:context=".NewEditUser">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,32 +16,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Kevin Mendez" />
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/edtCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:text="kevin@mail.com" />
+            android:hint="Correo"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/edtPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="secret" />
+            android:hint="Contraseña"
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/edtConfirPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="secret" />
+            android:hint="Confirmar contraseña"
+            android:inputType="textPassword" />
 
         <RadioGroup
             android:layout_width="match_parent"

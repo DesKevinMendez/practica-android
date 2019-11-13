@@ -3,20 +3,25 @@ package com.example.pasodedatos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class NewUser extends AppCompatActivity {
+import com.example.pasodedatos.StaticDataClass.Usuarios;
+
+public class NewEditUser extends AppCompatActivity {
 
     Button btnGuardar, btnCancelar;
     EditText edtNombre, edtCorreo, edtPass, edtConfirPass;
     RadioButton rdbUsuario, rdbAdmin, rdbAsistente;
     Usuarios usuarios;
+    SQLiteDatabase base;
+    Bundle editar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,40 @@ public class NewUser extends AppCompatActivity {
         rdbAdmin = findViewById(R.id.rdbAdmin);
         rdbAsistente = findViewById(R.id.rdbAsistente);
 
+        Datos dbDatoss = new Datos(getApplicationContext(), "mantoUsuarios", null, 1);
+        base = dbDatoss.getWritableDatabase();
+
+
+
+        editar = getIntent().getExtras();
+        if (editar != null){
+            btnGuardar.setText("Actualizar");
+
+            edtCorreo.setText(editar.getString("correo"));
+            edtCorreo.setFocusableInTouchMode(false);
+            edtCorreo.setFocusable(false);
+
+            edtNombre.setText(editar.getString("nombre"));
+
+            edtPass.setText(editar.getString("clave"));
+
+            edtConfirPass.setText(editar.getString("clave"));
+
+            if (editar.getString("tipoUsuario").equals("Usuario")){
+
+                rdbUsuario.setChecked(true);
+
+            } else if (editar.getString("tipoUsuario").equals("Administrador")){
+
+                rdbAdmin.setChecked(true);
+
+            } else {
+
+                rdbAsistente.setChecked(true);
+            }
+
+        }
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +82,8 @@ public class NewUser extends AppCompatActivity {
                 String confiPass = edtConfirPass.getText().toString().trim();
                 String tipoUsuario = rdbUsuario.isChecked() ? "Usuario" : rdbAdmin.isChecked() ? "Administrador" : "Asistente";
 
+                Usuarios.saveMailUser(correo);
+                
                 if (nombre.isEmpty()) {
                     edtNombre.setError("El nombre es requerido");
                     edtNombre.requestFocus();
@@ -52,6 +93,29 @@ public class NewUser extends AppCompatActivity {
                     edtCorreo.requestFocus();
                 } else if (pass.equals(confiPass)) {
 
+                    if (editar != null) {
+                        String consutaInsertSQL = "update usuarios set nombres = '"+ nombre +"'," +
+                                "claves= '"+ pass+"', niveles = '"+ tipoUsuario+"'" +
+                                "where correos = '"+ correo +"'";
+
+                        base.execSQL(consutaInsertSQL);
+                        Intent objHome = new Intent(getApplicationContext(), Home.class);
+                        startActivity(objHome);
+
+                    } else {
+
+                        usuarios.saveMailUser(correo);
+                        usuarios.saveNameUser(nombre);
+                        usuarios.savePassUser(pass);
+                        usuarios.saveTypeUser(tipoUsuario);
+
+                        String consutaInsertSQL = "insert into usuarios(correos, nombres, claves, niveles)";
+                        consutaInsertSQL += "values('"+correo+"', '"+ nombre +"', '"+ pass +"', '" + tipoUsuario + "')";
+
+                        base.execSQL(consutaInsertSQL);
+                    }
+
+
                     Intent objViewInfoUser = new Intent(getApplicationContext(), ViewNewUser.class);
                     objViewInfoUser.putExtra("btnCancelar", "Cancelar");
                     objViewInfoUser.putExtra("btnConfirmar", "Confirmar");
@@ -60,13 +124,8 @@ public class NewUser extends AppCompatActivity {
                     objViewInfoUser.putExtra("pass", pass);
                     objViewInfoUser.putExtra("tipoUsuario", tipoUsuario);
 
-                    usuarios.saveMailUser(correo);
-                    usuarios.saveNameUser(nombre);
-                    usuarios.savePassUser(pass);
-                    usuarios.saveTypeUser(tipoUsuario);
-
+                    Log.i("MENSAJE", "SE CREO EL USUARIO");
                     startActivityForResult(objViewInfoUser, 2);
-
 
 
                 } else {

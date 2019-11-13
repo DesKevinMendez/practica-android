@@ -12,7 +12,7 @@
         <activity android:name=".ListViewUser"></activity>
         <activity android:name=".FindDeleteOrUpdate" />
         <activity android:name=".ViewNewUser" />
-        <activity android:name=".NewUser" />
+        <activity android:name=".NewEditUser" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>

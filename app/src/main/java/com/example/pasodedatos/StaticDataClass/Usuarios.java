@@ -1,4 +1,4 @@
-package com.example.pasodedatos;
+package com.example.pasodedatos.StaticDataClass;
 
 import java.util.ArrayList;
 
@@ -22,14 +22,6 @@ public final class Usuarios {
         tipos.add(tipo);
     }
 
-    public static int getCantidadRegistros(){
-        return correos.size();
-    }
-
-    public static boolean buscarUsuario(String correo){
-        return correos.contains(correo);
-    }
-
     public static String getNombres(String correo){
         return nombres.get(correos.indexOf(correo)).toString().trim();
     }
@@ -41,12 +33,15 @@ public final class Usuarios {
         return tipos.get(correos.indexOf(correo)).toString().trim();
     }
 
-    public  static String getUsuario(int position){
-        return nombres.get(position).toString().trim();
-    }
-
     public static String getEmailUser(int position) {
         return correos.get(position).toString().trim();
+    }
+
+    public static void setCleanData(){
+        correos.clear();
+        nombres.clear();
+        claves.clear();
+        tipos.clear();
     }
 
 }
